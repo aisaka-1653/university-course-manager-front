@@ -1,5 +1,5 @@
 import { saveAuthTokens, setAuthHeaders } from "@/utils/auth";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -25,7 +25,7 @@ apiClient.interceptors.response.use(
 
     return response;
   },
-  (error) => Promise.reject(error)
+  (error: AxiosError) => Promise.reject(error)
 );
 
 export default apiClient;
