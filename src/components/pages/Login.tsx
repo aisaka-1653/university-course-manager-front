@@ -15,11 +15,13 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "../ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { LuLoader2 } from "react-icons/lu";
+import { ForgotPasswordForm } from "../organisms/ForgotPasswordForm";
 
 export const Login = () => {
   const { login, isLoading } = useAuth();
@@ -76,7 +78,11 @@ export const Login = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={!form.formState.isValid}>
+            <Button
+              type="submit"
+              disabled={!form.formState.isValid || isLoading}
+              className="w-full"
+            >
               {isLoading ? (
                 <>
                   <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -89,6 +95,9 @@ export const Login = () => {
           </form>
         </Form>
       </CardContent>
+      <CardFooter>
+        <ForgotPasswordForm />
+      </CardFooter>
     </Card>
   );
 };
