@@ -17,7 +17,7 @@ export const useAuth = () => {
       setIsLoading(true);
       try {
         const res = await userLogin(user);
-        setUser(res.data.data);
+        setUser(res.data.data.id);
         toast.success("ログインしました");
         navigate("/home");
       } catch (error) {

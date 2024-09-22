@@ -18,8 +18,12 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { useAuth } from "@/hooks/useAuth";
+import { LuLoader2 } from "react-icons/lu";
 
 export const Login = () => {
+  const { login, isLoading } = useAuth();
+
   const form = useForm<LoginFormSchema>({
     mode: "onChange",
     resolver: zodResolver(loginFormSchema),
@@ -30,7 +34,7 @@ export const Login = () => {
   });
 
   const handleSubmit = (user: LoginFormSchema) => {
-    console.log(user);
+    login(user);
     form.reset();
   };
 
@@ -73,7 +77,14 @@ export const Login = () => {
               )}
             />
             <Button type="submit" disabled={!form.formState.isValid}>
-              ログイン
+              {isLoading ? (
+                <>
+                  <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <span>Please Wait</span>
+                </>
+              ) : (
+                "ログイン"
+              )}
             </Button>
           </form>
         </Form>
