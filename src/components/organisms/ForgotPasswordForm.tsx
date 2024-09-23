@@ -24,6 +24,7 @@ import {
   FormItem,
   FormMessage,
 } from "../ui/form";
+import { requestPasswordReset } from "@/apis/auth";
 
 export const ForgotPasswordForm = () => {
   const form = useForm<ForgotPasswordFormSchema>({
@@ -35,7 +36,7 @@ export const ForgotPasswordForm = () => {
   });
 
   const handleSubmit = (data: ForgotPasswordFormSchema) => {
-    console.log(data);
+    requestPasswordReset(data);
     form.reset();
   };
 

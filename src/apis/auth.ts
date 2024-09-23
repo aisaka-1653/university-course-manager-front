@@ -9,3 +9,14 @@ export const login = async (user: LoginFormSchema): Promise<AxiosResponse> => {
 export const logout = async (): Promise<AxiosResponse> => {
   return apiClient.delete("/users/sign_out");
 };
+
+export const requestPasswordReset = async ({
+  email,
+}: {
+  email: string;
+}): Promise<AxiosResponse> => {
+  return apiClient.post("/users/password", {
+    email,
+    redirect_url: import.meta.env.VITE_PASSWORD_RESET_REDIRECT_URL,
+  });
+};
