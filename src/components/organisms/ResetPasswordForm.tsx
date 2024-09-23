@@ -11,19 +11,13 @@ import {
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import {
   resetPasswordFormSchema,
   ResetPasswordFormSchema,
 } from "@/schema/resetPasswordFormSchema";
 import { resetPassword } from "@/apis/auth";
 import { toast } from "sonner";
 import { useLocation, useNavigate } from "react-router-dom";
+import { CardWrapper } from "../molecules/CardWrapper";
 
 export const ResetPasswordForm = () => {
   const location = useLocation();
@@ -67,55 +61,47 @@ export const ResetPasswordForm = () => {
   };
 
   return (
-    <Card className="mx-auto max-w-sm">
-      <CardHeader>
-        <CardTitle className="text-2xl">パスワードの設定</CardTitle>
-        <CardDescription>
-          新しく設定するパスワードを入力してください
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(handleSubmit)}
-            className="space-y-8"
+    <CardWrapper
+      title="パスワードの設定"
+      description="新しく設定するパスワードを入力してください"
+    >
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>パスワード</FormLabel>
+                <FormControl>
+                  <Input type="password" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password_confirmation"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>確認用パスワード</FormLabel>
+                <FormControl>
+                  <Input type="password" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button
+            type="submit"
+            disabled={!form.formState.isValid}
+            className="w-full"
           >
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>パスワード</FormLabel>
-                  <FormControl>
-                    <Input type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password_confirmation"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>確認用パスワード</FormLabel>
-                  <FormControl>
-                    <Input type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button
-              type="submit"
-              disabled={!form.formState.isValid}
-              className="w-full"
-            >
-              送信
-            </Button>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
+            送信
+          </Button>
+        </form>
+      </Form>
+    </CardWrapper>
   );
 };
