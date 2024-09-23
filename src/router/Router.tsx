@@ -1,3 +1,5 @@
+import { CourseList } from "@/components/pages/CourseList";
+import { CouseRegistration } from "@/components/pages/CouseRegistration";
 import { Home } from "@/components/pages/Home";
 import { Login } from "@/components/pages/Login";
 import { ResetPassword } from "@/components/pages/ResetPassword";
@@ -12,6 +14,8 @@ export const Router = () => {
         <Route path="password/reset" element={<ResetPassword />} />
       </Route>
       <Route path="home" element={<Home />} />
+      <Route path="courses" element={<CourseList />} />
+      <Route path="courses/registration" element={<CouseRegistration />} />
     </Routes>
   );
 };
