@@ -13,7 +13,10 @@ export const Header = () => {
       {isLoading ? (
         <Loader2 className="h-4 w-4 animate-spin" />
       ) : (
-        <UserAvatar name={currentUser.full_name} className="gap-4" />
+        <UserAvatar
+          name={currentUser?.full_name ?? "Guest"}
+          className="gap-4"
+        />
       )}
     </div>
   );
