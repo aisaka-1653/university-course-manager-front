@@ -28,6 +28,11 @@ export function NavigationBar() {
             受講登録
           </Link>
         </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link to="/courses/schedule" className={navigationMenuTriggerStyle()}>
+            時間割
+          </Link>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );
