@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export function NavigationBar() {
   return (
-    <NavigationMenu className="justify-start bg-blue-400 text-white px-6">
+    <NavigationMenu className="justify-center sm:justify-start bg-blue-400 text-white px-6">
       <NavigationMenuList>
         <NavigationMenuItem>
           <Link to="/home" className={navigationMenuTriggerStyle()}>
